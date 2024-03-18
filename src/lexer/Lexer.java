@@ -5,22 +5,30 @@ import java.util.*;
 import symbols.*;
 
 public class Lexer {
+
     public static int line = 1;
     char peek = ' ';
-    @SuppressWarnings("rawtypes")
+
     Hashtable words = new Hashtable();
 
-    @SuppressWarnings("unchecked")
     void reserve(Word w) {
         words.put(w.lexeme, w);
     }
 
     public Lexer() {
-        reserve(new Word("if", Tag.IF));
-        reserve(new Word("else", Tag.ELSE));
-        reserve(new Word("while", Tag.WHILE));
-        reserve(new Word("do", Tag.DO));
+        reserve(new Word("se", Tag.IF));
+        reserve(new Word("senao", Tag.ELSE));
+        reserve(new Word("fimse", Tag.FIMSE));
+        reserve(new Word("enquanto", Tag.WHILE));
+        reserve(new Word("fimenquanto", Tag.FIMENQUANTO));
+        reserve(new Word("faca", Tag.DO));
         reserve(new Word("break", Tag.BREAK));
+        reserve(new Word("programa", Tag.PROGRAMA));
+        reserve(new Word("inicio", Tag.INICIO));
+        reserve(new Word("fim", Tag.FIM));
+        reserve(new Word("leia", Tag.LEIA));
+        reserve(new Word("escreva", Tag.ESCREVA));
+        reserve(new Word("<-", Tag.ATRIBUICAO));
         reserve(Word.True);
         reserve(Word.False);
         reserve(Type.Int);
@@ -29,12 +37,12 @@ public class Lexer {
         reserve(Type.Float);
     }
 
-    void readChar() throws IOException {
+    void readch() throws IOException {
         peek = (char) System.in.read();
     }
 
-    boolean readChar(char c) throws IOException {
-        readChar();
+    boolean readch(char c) throws IOException {
+        readch();
         if (peek != c) {
             return false;
         }
@@ -42,9 +50,8 @@ public class Lexer {
         return true;
     }
 
-    @SuppressWarnings("unchecked")
     public Token scan() throws IOException {
-        for (;; peek = (char) System.in.read()) {
+        for (;; readch()) {
             if (peek == ' ' || peek == '\t') {
                 continue;
             } else if (peek == '\n') {
@@ -53,11 +60,49 @@ public class Lexer {
                 break;
             }
         }
+        switch (peek) {
+            case '&':
+                if (readch('&')) {
+                    return Word.and;
+                } else {
+                    return new Token('&');
+                }
+            case '|':
+                if (readch('|')) {
+                    return Word.or;
+                } else {
+                    return new Token('|');
+                }
+            case '=':
+                if (readch('=')) {
+                    return Word.eq;
+                } else {
+                    return new Token('=');
+                }
+            case '!':
+                if (readch('=')) {
+                    return Word.ne;
+                } else {
+                    return new Token('!');
+                }
+            case '<':
+                if (readch('=')) {
+                    return Word.le;
+                } else {
+                    return new Token('<');
+                }
+            case '>':
+                if (readch('=')) {
+                    return Word.ge;
+                } else {
+                    return new Token('>');
+                }
+        }
         if (Character.isDigit(peek)) {
             int v = 0;
             do {
                 v = 10 * v + Character.digit(peek, 10);
-                peek = (char) System.in.read();
+                readch();
             } while (Character.isDigit(peek));
             if (peek != '.') {
                 return new Num(v);
@@ -65,7 +110,7 @@ public class Lexer {
             float x = v;
             float d = 10;
             for (;;) {
-                peek = (char) System.in.read();
+                readch();
                 if (!Character.isDigit(peek)) {
                     break;
                 }
@@ -78,7 +123,7 @@ public class Lexer {
             StringBuffer b = new StringBuffer();
             do {
                 b.append(peek);
-                peek = (char) System.in.read();
+                readch();
             } while (Character.isLetterOrDigit(peek));
             String s = b.toString();
             Word w = (Word) words.get(s);

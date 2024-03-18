@@ -5,17 +5,15 @@ import lexer.*;
 import inter.*;
 
 public class Env {
-    @SuppressWarnings("rawtypes")
+
     private Hashtable table;
     protected Env prev;
 
-    @SuppressWarnings("rawtypes")
     public Env(Env n) {
         table = new Hashtable();
         prev = n;
     }
 
-    @SuppressWarnings("unchecked")
     public void put(Token w, Id i) {
         table.put(w, i);
     }
@@ -23,8 +21,9 @@ public class Env {
     public Id get(Token w) {
         for (Env e = this; e != null; e = e.prev) {
             Id found = (Id) (e.table.get(w));
-            if (found != null)
+            if (found != null) {
                 return found;
+            }
         }
         return null;
     }

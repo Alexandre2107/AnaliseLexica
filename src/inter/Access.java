@@ -4,6 +4,7 @@ import lexer.*;
 import symbols.*;
 
 public class Access extends Op {
+
     public Id array;
     public Expr index;
 

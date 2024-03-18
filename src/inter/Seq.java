@@ -1,6 +1,7 @@
 package inter;
 
 public class Seq extends Stmt {
+
     Stmt stmt1;
     Stmt stmt2;
 
@@ -10,11 +11,11 @@ public class Seq extends Stmt {
     }
 
     public void gen(int b, int a) {
-        if (stmt1 == Stmt.Null)
+        if (stmt1 == Stmt.Null) {
             stmt2.gen(b, a);
-        else if (stmt2 == Stmt.Null)
+        } else if (stmt2 == Stmt.Null) {
             stmt1.gen(b, a);
-        else {
+        } else {
             int label = newlabel();
             stmt1.gen(b, label);
             emitlabel(label);

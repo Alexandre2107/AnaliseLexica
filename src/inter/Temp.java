@@ -4,6 +4,7 @@ import lexer.*;
 import symbols.*;
 
 public class Temp extends Expr {
+
     static int count = 0;
     int number = 0;
 
@@ -13,7 +14,6 @@ public class Temp extends Expr {
     }
 
     public String toString() {
-        return "" + number;
+        return "t" + number;
     }
-
 }

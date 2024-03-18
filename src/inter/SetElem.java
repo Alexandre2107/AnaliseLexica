@@ -4,6 +4,7 @@ import lexer.*;
 import symbols.*;
 
 public class SetElem extends Stmt {
+
     public Id array;
     public Expr index;
     public Expr expr;
@@ -12,20 +13,26 @@ public class SetElem extends Stmt {
         array = x.array;
         index = x.index;
         expr = y;
-        if (check(x.type, expr.type) == null)
+        if (check(x.type, expr.type) == null) {
             error("type error");
+        }
     }
 
     public Type check(Type p1, Type p2) {
-        if (Type.numeric(p1) && Type.numeric(p2))
-            return p2;
-        else if (p1 == Type.Bool && p2 == Type.Bool)
-            return p2;
-        else
+        if (p1 instanceof Array || p2 instanceof Array) {
             return null;
+        } else if (p1 == p2) {
+            return p2;
+        } else if (Type.numeric(p1) && Type.numeric(p2)) {
+            return p2;
+        } else {
+            return null;
+        }
     }
 
     public void gen(int b, int a) {
-        emit(array.toString() + " = " + expr.gen().toString());
+        String s1 = index.reduce().toString();
+        String s2 = expr.reduce().toString();
+        emit(array.toString() + " [ " + s1 + " ] = " + s2);
     }
 }

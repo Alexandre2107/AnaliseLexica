@@ -4,6 +4,7 @@ import lexer.*;
 import symbols.*;
 
 public class Not extends Logical {
+
     public Not(Token tok, Expr x2) {
         super(tok, x2, x2);
     }
