@@ -86,6 +86,6 @@ public class Parse {
         if (look.tag == '}')
             return Stmt.Null;
         else
-            return new Seq(stmt(), stmts());
+            return new Seq(stmts(), stmts());
     }
 }
