@@ -212,7 +212,6 @@ int main(int argc, char *argv[]){
             case ERRO_LEXICO:
                 printf("Tag ERRO_LEXICO: %d\n", ERRO_LEXICO);
                 break;
-            // Adicione os outros casos para os tokens aqui
             default:
                 printf("Token não reconhecido\n");
                 break;
