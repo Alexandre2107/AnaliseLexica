@@ -1,4 +1,4 @@
-package main;
+
 
 import java.io.*; import lexer.*; import parser.*;
 

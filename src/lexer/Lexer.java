@@ -6,7 +6,7 @@ import symbols.*;
 
 public class Lexer {
 
-    public static int line = 1;
+    public static int line = 0;
     char peek = ' ';
 
     Hashtable words = new Hashtable();
