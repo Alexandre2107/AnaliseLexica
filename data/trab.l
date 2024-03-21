@@ -41,6 +41,7 @@
 %}
 
 identificador [a-zA-Z]([a-zA-Z0-9])*
+comentario ((\/\*)(?:(.)|\n)*?(\*\/))|(\/\/.*)
 numero [0-9]+
 espaco [ \t]+
 novalinha [\n]
@@ -90,10 +91,7 @@ F { printf("%11s:_constante_logica_de_falsidade: T_F;\n",yytext); return T_F; }
 {numero} { printf("%11s:_numero: T_NUMERO;\n",yytext); return T_NUMERO; }
 {espaco} /* não faz nada */
 {novalinha} /* não faz nada */
-"//".* /*comentário de linha*/
-"/*" { BEGIN(comentario); }
-<comentario>"*/" { BEGIN(INITIAL); }
-<comentario>.    /* não faz nada */
+{comentario} /* não faz nada */
 . { printf("%11s:_ERRO_SIMBOLO_NAO_RECONHECIDO!: ERRO LEXICO\n",yytext); return ERRO_LEXICO; }
 %%
 

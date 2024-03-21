@@ -12,11 +12,13 @@ public class Word extends Token {
     public String toString() {
         return lexeme;
     }
+
     public static final Word and = new Word("e", Tag.AND), or = new Word("ou", Tag.OR),
-            eq = new Word("==", Tag.EQ), ne = new Word("!=", Tag.NE),
-            le = new Word("<=", Tag.LE), ge = new Word(">=", Tag.GE),
-            minus = new Word("minus", Tag.MINUS),
+            le = new Word("<", Tag.LE), g = new Word(">", Tag.G),
+            minus = new Word("-", Tag.MINUS),
             True = new Word("v", Tag.TRUE),
             False = new Word("f", Tag.FALSE),
-            temp = new Word("t", Tag.TEMP);
+            temp = new Word("t", Tag.TEMP),
+            plus = new Word("+", Tag.PLUS),
+            mult = new Word("*", Tag.MULT);
 }

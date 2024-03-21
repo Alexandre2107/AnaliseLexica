@@ -57,7 +57,7 @@ public class Parser {
             Type p = type();
             Token tok = look;
             match(Tag.ID);
-            //match(';');
+            // match(';');
             Id id = new Id((Word) tok, p, used);
             top.put(tok, id);
             used = used + p.width;
@@ -143,8 +143,8 @@ public class Parser {
                 System.out.println(look.toString() + ":_palavra_reservada: T_FACA");
                 Stmt.Enclosing = savedStmt;
                 return donode;
-            case Tag.BREAK:
-                match(Tag.BREAK);
+            case Tag.INTEIRO:
+                match(Tag.INTEIRO);
                 match('\n');
                 return new Break();
             case '{':
@@ -213,7 +213,7 @@ public class Parser {
         switch (look.tag) {
             case '<':
             case Tag.LE:
-            case Tag.GE:
+            case Tag.G:
             case '>':
                 Token tok = look;
                 move();

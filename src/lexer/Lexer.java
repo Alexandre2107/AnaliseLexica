@@ -17,18 +17,28 @@ public class Lexer {
 
     public Lexer() {
         reserve(new Word("se", Tag.IF));
+        reserve(new Word("e", Tag.AND));
+        reserve(new Word("ou", Tag.OR));
+        reserve(new Word("nao", Tag.NOT));
         reserve(new Word("senao", Tag.ELSE));
         reserve(new Word("fimse", Tag.FIMSE));
+        reserve(new Word("entao", Tag.THEN));
         reserve(new Word("enquanto", Tag.WHILE));
         reserve(new Word("fimenquanto", Tag.FIMENQUANTO));
         reserve(new Word("faca", Tag.DO));
-        reserve(new Word("break", Tag.BREAK));
         reserve(new Word("programa", Tag.PROGRAMA));
         reserve(new Word("inicio", Tag.INICIO));
-        reserve(new Word("fim", Tag.FIM));
+        reserve(new Word("fimprograma", Tag.FIM));
         reserve(new Word("leia", Tag.LEIA));
         reserve(new Word("escreva", Tag.ESCREVA));
+        reserve(new Word("logico", Tag.LOGICO));
+        reserve(new Word("inteiro", Tag.INTEIRO));
         reserve(new Word("<-", Tag.ATRIBUICAO));
+        reserve(new Word("V", Tag.TRUE));
+        reserve(new Word("F", Tag.FALSE));
+        reserve(new Word("div", Tag.DIV));
+        reserve(new Word("(", Tag.LPAREN));
+        reserve(new Word(")", Tag.RPAREN));
         reserve(Word.True);
         reserve(Word.False);
         reserve(Type.Int);
@@ -61,44 +71,61 @@ public class Lexer {
             }
         }
         switch (peek) {
-            case '&':
-                if (readch('&')) {
-                    return Word.and;
+            case '+':
+                if (readch(' ')) {
+                    return Word.plus;
                 } else {
-                    return new Token('&');
+                    return new Token('+');
                 }
-            case '|':
-                if (readch('|')) {
-                    return Word.or;
+            case '-':
+                if (readch(' ')) {
+                    return Word.minus;
                 } else {
-                    return new Token('|');
-                }
-            case '=':
-                if (readch('=')) {
-                    return Word.eq;
-                } else {
-                    return new Token('=');
-                }
-            case '!':
-                if (readch('=')) {
-                    return Word.ne;
-                } else {
-                    return new Token('!');
+                    return new Token('-');
                 }
             case '<':
-                if (readch('=')) {
+                if (readch(' ')) {
                     return Word.le;
                 } else {
                     return new Token('<');
                 }
             case '>':
-                if (readch('=')) {
-                    return Word.ge;
+                if (readch(' ')) {
+                    return Word.g;
                 } else {
                     return new Token('>');
                 }
+            case '*':
+                if (readch(' ')) {
+                    return Word.mult;
+                } else {
+                    return new Token('*');
+                }
+            case '/':
+                if (readch('*')) {
+                    // inicio comentario de bloco ignorar tudo ate o fim do comentario e nao ler
+                    // nada e retornar nada
+                    while (true) {
+                        readch();
+                        if (peek == '*') {
+                            if (readch('/')) {
+                                break;
+                            }
+                        }
+                    }
+                } else if (readch('/')) {
+                    // inicio comentario de linha ignorar tudo ate o fim da linha e nao ler nada e retornar nada
+                    while (true) {
+                        readch();
+                        if (peek == '\n' || peek == '\r' || peek == '\0' || peek == '\f' || peek == '\b' || peek == '\t') {
+                            break;
+                        }
+                    }
+                }
         }
-        if (Character.isDigit(peek)) {
+        if (Character.isDigit(peek))
+
+        {
             int v = 0;
             do {
                 v = 10 * v + Character.digit(peek, 10);
