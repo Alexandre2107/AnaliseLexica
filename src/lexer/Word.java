@@ -23,5 +23,6 @@ public class Word extends Token {
             mult = new Word("*", Tag.MULT),
             lparen = new Word("(", Tag.LPAREN),
             rparen = new Word(")", Tag.RPAREN),
-            atribuicao = new Word("<-", Tag.ATRIBUICAO);
+            atribuicao = new Word("<-", Tag.ATRIBUICAO),
+            equals = new Word("=", Tag.EQ);
 }

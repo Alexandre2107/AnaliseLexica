@@ -72,6 +72,12 @@ public class Lexer {
             }
         }
         switch (peek) {
+            case '=':
+                if (readch(' ')) {
+                    return Word.equals;
+                } else {
+                    return new Token('=');
+                }
             case '+':
                 if (readch(' ')) {
                     return Word.plus;
