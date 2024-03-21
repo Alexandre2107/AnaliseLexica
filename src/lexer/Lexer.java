@@ -85,7 +85,9 @@ public class Lexer {
                     return new Token('-');
                 }
             case '<':
-                if (readch(' ')) {
+                if (readch('-')) {
+                    return Word.atribuicao;
+                } else if (peek == ' ') {
                     return Word.le;
                 } else {
                     return new Token('<');
