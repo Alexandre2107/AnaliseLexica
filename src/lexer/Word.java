@@ -14,7 +14,7 @@ public class Word extends Token {
     }
 
     public static final Word and = new Word("e", Tag.AND), or = new Word("ou", Tag.OR),
-            le = new Word("<", Tag.LE), g = new Word(">", Tag.G),
+            le = new Word("<", Tag.LE), g = new Word(">", Tag.GREATER),
             minus = new Word("-", Tag.MINUS),
             True = new Word("v", Tag.TRUE),
             False = new Word("f", Tag.FALSE),

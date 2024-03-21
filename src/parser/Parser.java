@@ -213,7 +213,7 @@ public class Parser {
         switch (look.tag) {
             case '<':
             case Tag.LE:
-            case Tag.G:
+            case Tag.GREATER:
             case '>':
                 Token tok = look;
                 move();
