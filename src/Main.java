@@ -88,7 +88,7 @@ public class Main {
                         System.out.println("\nOperador: " + tok.toString() + " / Token: T_NOT");
                         break;
                     case 282:
-                        System.out.println("\nOperador: " + tok.toString() + " / Token: T_EQUAL");
+                        System.out.println("\nOperador: " + tok.toString() + " / Token: T_ATRIBUICAO");
                         break;
                     case 40:
                         System.out.println("\nOperador: " + tok.toString() + " / Token: T_LPAREN");
@@ -117,7 +117,7 @@ public class Main {
 
             } else if (tok.toString() == "inteiro" || tok.toString() == "logico") {
                 if (tok.toString() == "inteiro") {
-                    System.out.println( "\nTipo: " + tok.toString() + " / Token: T_INTEIRO");
+                    System.out.println("\nTipo: " + tok.toString() + " / Token: T_INTEIRO");
                 } else {
                     System.out.println("\nTipo: " + tok.toString() + " / Token: T_LOGICO");
                 }
