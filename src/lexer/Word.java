@@ -20,5 +20,7 @@ public class Word extends Token {
             False = new Word("f", Tag.FALSE),
             temp = new Word("t", Tag.TEMP),
             plus = new Word("+", Tag.PLUS),
-            mult = new Word("*", Tag.MULT);
+            mult = new Word("*", Tag.MULT),
+            lparen = new Word("(", Tag.LPAREN),
+            rparen = new Word(")", Tag.RPAREN);
 }

@@ -16,8 +16,8 @@ public class Main {
                 System.out.println("\nPalavra Reservada: " + tok.toString());
             } else if (tok.tag == 287 || tok.tag == 268 || tok.tag == 291 || tok.tag == 292 || tok.tag == 263
                     || tok.tag == 267
-                    || tok.tag == 256 || tok.tag == 271 || tok.tag == 285 || tok.tag == 282 || tok.tag == 293
-                    || tok.tag == 294) {
+                    || tok.tag == 256 || tok.tag == 271 || tok.tag == 285 || tok.tag == 282 || tok.tag == 40
+                    || tok.tag == 41) {
                 System.out.println("\nOperador: " + tok.toString());
             } else if (tok.tag == 264) {
                 System.out.println("\nIdentificador: " + tok.toString());
@@ -31,7 +31,7 @@ public class Main {
                 System.out.println("\nTipo: " + tok.toString());
             }
 
-            if (tok.tag != 13 && tok.tag != 32) {
+            if (tok.tag != 13 && tok.tag != 32 && tok.tag != 10) {
                 System.out.println("Tag: " + tok.tag);
             }
         }

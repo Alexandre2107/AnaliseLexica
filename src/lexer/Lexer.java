@@ -8,6 +8,7 @@ public class Lexer {
 
     public static int line = 0;
     char peek = ' ';
+    String lexeme = "";
 
     Hashtable words = new Hashtable();
 
@@ -101,7 +102,7 @@ public class Lexer {
                 } else {
                     return new Token('*');
                 }
-            case '/':
+            case '/': {
                 if (readch('*')) {
                     // inicio comentario de bloco ignorar tudo ate o fim do comentario e nao ler
                     // nada e retornar nada
@@ -113,15 +114,16 @@ public class Lexer {
                             }
                         }
                     }
-                } else if (readch('/')) {
-                    // inicio comentario de linha ignorar tudo ate o fim da linha e nao ler nada e retornar nada
+                } else if (peek == '/') {
                     while (true) {
                         readch();
-                        if (peek == '\n' || peek == '\r' || peek == '\0' || peek == '\f' || peek == '\b' || peek == '\t') {
+                        if (peek == '\n') {
                             break;
                         }
                     }
                 }
+                break;
+            }
         }
         if (Character.isDigit(peek))
 
