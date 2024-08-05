@@ -91,9 +91,10 @@ F { printf("%11s:_constante_logica_de_falsidade: T_F;\n",yytext); return T_F; }
 {numero} { printf("%11s:_numero: T_NUMERO;\n",yytext); return T_NUMERO; }
 {espaco} /* não faz nada */
 {novalinha} /* não faz nada */
-{comentario} /* não faz nada */
-. { printf("%11s:_ERRO_SIMBOLO_NAO_RECONHECIDO!: ERRO LEXICO\n",yytext); return ERRO_LEXICO; }
-
+"//".* /* comentario de linha */ printf("%11s: /*comentario de linha*/\n",yytext);
+"/*" BEGIN(comentario);
+<comentario>"*/" BEGIN(INITIAL);
+<comentario>.    /* nao faz nada */
 %%
 
 int main(int argc, char *argv[]){

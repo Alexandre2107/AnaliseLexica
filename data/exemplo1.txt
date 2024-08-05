@@ -1,14 +1,26 @@
-/*-----------------------------
-  Primeiro programa em Simples.
-  -----------------------------*/
-programa teste
-  inteiro A B
+/*ARQUIVO DE AVALIACAO*/
+
+///////////////////////////
+//	TESTE
+///////////////////////////
+
+/*PROGRAMA REPETE*/
+programa repete
+	inteiro i j
+
+/*INICIO*/
 inicio
-  // A variavel A recebe 5
-  A <- 5
-  leia B
-  enquanto A < B faca
-     escreva A
-     A <- A + 1
-  fimenquanto
-fimprograma 
+	i <- 1
+	/*ENQUANTO*/
+	enquanto i < 10 faca
+		j <- 1
+		/*
+		ENQUANTO
+		*/
+		enquanto j < 10 faca
+			escreva i + j
+			j <- j + 1
+		fimenquanto
+		i <- i + 1
+	fimenquanto
+fimprograma
